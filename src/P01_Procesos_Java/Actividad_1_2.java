@@ -48,9 +48,9 @@ public class Actividad_1_2 {
 		Actividad_1_2 a=new Actividad_1_2();
 		
 		String[] numero = new String[1];
-		numero[0]="5";
 		
-	    a.ejecutar(numero);
+		
+	    a.ejecutar(args);
 	    
 		
 		
