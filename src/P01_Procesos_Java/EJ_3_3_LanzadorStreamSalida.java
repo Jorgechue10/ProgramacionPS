@@ -2,7 +2,7 @@ package P01_Procesos_Java;
 
 import java.io.InputStream;
 
-public class LanzadorStreamSalida {
+public class EJ_3_3_LanzadorStreamSalida {
 
 	public void lanzarSumador(Integer n1, Integer n2){
 	    String clase="com.P01_Pocesos_Java.Sumador";
@@ -47,10 +47,10 @@ public class LanzadorStreamSalida {
 	}
 	
 	public static void main(String[] args){
-		LanzadorStreamSalida l=new LanzadorStreamSalida();
+		EJ_3_3_LanzadorStreamSalida l=new EJ_3_3_LanzadorStreamSalida();
 	    l.lanzarSumador(1, 51);
 	    l.lanzarSumador(51, 100);
-	    System.out.println("Sumas realizadas con éxito");
+	    System.out.println("Sumas realizadas con ï¿½xito");
 	}
 
 }

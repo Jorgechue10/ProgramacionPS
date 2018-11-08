@@ -1,6 +1,6 @@
 package P01_Procesos_Java;
 
-public class lanzadorProceso {
+public class EJ_2_lanzadorProceso {
 
 	public void ejecutar(String ruta){
 
@@ -16,7 +16,7 @@ public class lanzadorProceso {
 	
 	public static void main(String[] args) {
 	        String ruta = "C:\\Program Files (x86)\\Notepad++\\notepad++.exe";
-	        lanzadorProceso lp=new lanzadorProceso();
+	        EJ_2_lanzadorProceso lp=new EJ_2_lanzadorProceso();
 	        lp.ejecutar(ruta);
 	        System.out.println("Finalizado");
 	}

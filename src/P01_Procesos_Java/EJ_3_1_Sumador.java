@@ -1,13 +1,13 @@
 package P01_Procesos_Java;
 
-public class Sumador {
+public class EJ_3_1_Sumador {
 
 	/**
-	 * Dado dos valores, empieza a sumar todos los números siguientes 
-	 * al primer parámetro hasta llegar al segundo parámetro
+	 * Dado dos valores, empieza a sumar todos los nï¿½meros siguientes 
+	 * al primer parï¿½metro hasta llegar al segundo parï¿½metro
 	 * @param n1 Integer. Valor inicial para realizar la suma
-	 * @param n2 Integer. Número con el que se va a terminar la suma
-	 * @return Integer. Devuelve el resultado de la operación
+	 * @param n2 Integer. Nï¿½mero con el que se va a terminar la suma
+	 * @return Integer. Devuelve el resultado de la operaciï¿½n
 	 */
 	public int sumar(int n1, int n2){
         int resultado=0;
@@ -19,7 +19,7 @@ public class Sumador {
 	}
 
 	public static void main(String[] args){
-        Sumador s=new Sumador();
+        EJ_3_1_Sumador s=new EJ_3_1_Sumador();
         int n1=Integer.parseInt(args[0]);
         int n2=Integer.parseInt(args[1]);
         int resultado=s.sumar(n1, n2);
