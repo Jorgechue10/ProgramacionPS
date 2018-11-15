@@ -9,19 +9,9 @@ public class Actividad_2_1_Clase_Tic extends Thread {
 		for(;;) {
 			System.out.println("TIC");
 			try {
-			  Thread.sleep(1000);
-			} catch (InterruptedException ex) {
-			  // Stop immediately and go home
+			  Thread.sleep(2000);
+			} catch (InterruptedException ex) {			  
 			}
 		}			
 	}
-
-	
-	/*public static void main(String[] args) {
-		Actividad_2_1_Clase_Tic h1 = new Actividad_2_1_Clase_Tic();			
-		h1.start();		
-		Actividad_2_2_Clase_Tac h2 = new Actividad_2_2_Clase_Tac();			
-		h2.start();		
-		
-	}*/
 }
