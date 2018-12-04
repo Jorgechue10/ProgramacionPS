@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio1_multiproceso;
 
 import java.io.File;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.io.IOException;
 public class leerDesdeFichero {
 
 	public void leerFichero() throws IOException {
-		File f1 = new File("Evaluacion\\Ejercicio1\\texto.txt");			
+		File f1 = new File("Evaluacion\\Ejercicio1_multiproceso\\texto.txt");			
 		FileReader fichero_leer = new FileReader(f1);
 		int i; 
 		String frasefinal="";

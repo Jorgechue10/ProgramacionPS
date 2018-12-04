@@ -1,4 +1,4 @@
-package Ejercicio1;
+package Ejercicio1_multiproceso;
 
 import java.io.IOException;
 
