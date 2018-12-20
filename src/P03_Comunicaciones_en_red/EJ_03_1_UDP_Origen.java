@@ -25,5 +25,6 @@ public class EJ_03_1_UDP_Origen {
 		
 		DatagramSocket socket = new DatagramSocket();
 		socket.send(paqueteUDP);
+		socket.close();
 	}
 }
