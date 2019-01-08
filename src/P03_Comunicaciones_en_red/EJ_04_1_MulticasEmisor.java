@@ -3,7 +3,7 @@ package P03_Comunicaciones_en_red;
 import java.io.*; 
 import java.net.*; 
  
-public class EJ_05_1_MulticasEmisor2 { 
+public class EJ_04_1_MulticasEmisor { 
   public static void main(String args[]) throws Exception { 
     // FLUJO PARA ENTRADA ESTANDAR
     BufferedReader in = new 

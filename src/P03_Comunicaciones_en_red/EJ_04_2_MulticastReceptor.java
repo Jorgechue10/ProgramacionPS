@@ -1,41 +1,48 @@
 package P03_Comunicaciones_en_red;
 
-import java.io.IOException;
+import java.io.*; 
 import java.net.*;
 
-//Cliente que escucha hasta que llega la cadena fin.
-public class EJ_04_2_MulticastReceptor extends Thread {
+public class EJ_04_2_MulticastReceptor { 
+  public static void main(String args[]) throws Exception { 
+    //Se crea el socket multicast 
+    
+	//Grupo    
+	InetAddress grupo = InetAddress.getByName("225.26.38.10");
 	
-	 protected MulticastSocket socket = null;
-	 protected byte[] buf = new byte[256];
-	 
-	 public EJ_04_2_MulticastReceptor() {
-		
-	 }
-	 
-	 public void run() {
-	     
-	     try {
-			socket = new MulticastSocket(9999);
-			InetAddress grupoMulticast = InetAddress.getByName("225.26.38.12");
-		    socket.joinGroup(grupoMulticast);
-		     
-		    while (true) {
-		         
-		        DatagramPacket informacion = new DatagramPacket(buf, buf.length);
-		        socket.receive(informacion);
-		        String recibido = new String(informacion.getData(), 0, informacion.getLength());
-		        System.out.println(recibido);
-		        
-		        if ("fin".equals(recibido)) {
-		            break;
-		        }
-		    }
-		    socket.leaveGroup(grupoMulticast);
-		    socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	     
-	 }
-}
+	
+	//Puerto multicast
+	int puerto = 9999;
+	
+	
+	
+    MulticastSocket ms = new MulticastSocket(puerto);  
+   
+    
+
+    //Nos unimos al grupo
+    ms.joinGroup (grupo);
+    System.out.println("Se ha unido al grupo");
+   
+    String msg="";
+    
+    //Leyendo hasta *
+    while(!msg.trim().equals("*")) {  
+      byte[] buf = new byte[1000];
+      
+      //Recibe el paquete del servidor multicast      
+      DatagramPacket paquete = new DatagramPacket(buf, buf.length);
+      ms.receive(paquete);
+
+      msg = new String(paquete.getData());
+      System.out.println ("Recibo: " + msg.trim());	
+    }
+    
+    System.out.println("Sale del grupo");
+    
+    ms.leaveGroup (grupo); //abandonamos grupo
+    ms.close (); //cierra socket
+    
+    System.out.println ("Socket cerrado...");
+   } 
+}  
