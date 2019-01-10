@@ -38,7 +38,7 @@ public class EJ_06_Chat_TCP_HiloServidorChat implements Runnable {
 					break;
 				}
 				
-				//cadena = voltearCadena(cadena);
+				cadena = voltearCadena(cadena);
 				
 				comun.setMensajes(comun.getMensajes() + cadena + "\n");
 				EnviarMensajesaTodos(comun.getMensajes());
@@ -77,7 +77,7 @@ public class EJ_06_Chat_TCP_HiloServidorChat implements Runnable {
 
 	private String voltearCadena(String cadena) {
 		
-		if(cadena.charAt(0) != '>') {
+		if(cadena.charAt(1) != '>') {
 			
 			String[] array;
 			array = cadena.split(">");	
