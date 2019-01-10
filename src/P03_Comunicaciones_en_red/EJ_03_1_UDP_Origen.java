@@ -14,7 +14,7 @@ public class EJ_03_1_UDP_Origen {
 		//InetAddress destino = InetAddress.getLocalHost(); // Obtenemos la IP del host local
 
 		// Para decir cualquier otro host
-		InetAddress destino = InetAddress.getByName("192.168.5.80");
+		InetAddress destino = InetAddress.getByName("localhost");
 
 		byte[] mensaje = new byte[1024];
 
