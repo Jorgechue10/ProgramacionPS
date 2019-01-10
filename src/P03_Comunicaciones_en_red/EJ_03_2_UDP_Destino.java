@@ -12,7 +12,7 @@ public class EJ_03_2_UDP_Destino {
 
 		byte[] bufer = new byte[1024];
 		
-		DatagramSocket socket = new DatagramSocket(7777);   
+		DatagramSocket socket = new DatagramSocket(9999);   
 
 		//ESPERANDO DATAGRAMA
 		System.out.println("Esperando Datagrama .......... ");  
