@@ -93,8 +93,8 @@ public class EJ_06_Chat_TCP_ClienteChat extends JFrame implements ActionListener
 
 			} catch (IOException e) {
 				// este error sale cuando el servidor se cierra
-				JOptionPane.showMessageDialog(null, "IMPOSIBLE CONECTAR CON EL SERVIDOR\n" + e.getMessage(),
-						"<<MENSAJE DE ERROR:2>>", JOptionPane.ERROR_MESSAGE);
+				/*JOptionPane.showMessageDialog(null, "IMPOSIBLE CONECTAR CON EL SERVIDOR\n" + e.getMessage(),
+						"<<MENSAJE DE ERROR:2>>", JOptionPane.ERROR_MESSAGE);*/
 				repetir = false;
 			}
 		} // while

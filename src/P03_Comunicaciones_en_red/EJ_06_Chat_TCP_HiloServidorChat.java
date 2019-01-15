@@ -32,13 +32,14 @@ public class EJ_06_Chat_TCP_HiloServidorChat implements Runnable {
 			try {
 				cadena = fentrada.readUTF();
 				
-				if (cadena.trim().equals("*")) {// EL CLIENTE SE DESCONECTA
+				if (haEscritoAdios(cadena)) {// EL CLIENTE SE DESCONECTA
 					comun.setACTUALES(comun.getACTUALES() - 1);
 					System.out.println("NUMERO DE CONEXIONES ACTUALES: " + comun.getACTUALES());
 					break;
 				}
-				
+			
 				cadena = voltearCadena(cadena);
+				
 				
 				comun.setMensajes(comun.getMensajes() + cadena + "\n");
 				EnviarMensajesaTodos(comun.getMensajes());
@@ -75,6 +76,7 @@ public class EJ_06_Chat_TCP_HiloServidorChat implements Runnable {
 		
 	}// EnviarMensajesaTodos
 
+	//Método para voltear la cadena
 	private String voltearCadena(String cadena) {
 		
 		if(cadena.charAt(1) != '>') {
@@ -90,5 +92,19 @@ public class EJ_06_Chat_TCP_HiloServidorChat implements Runnable {
 			return array[0]+ " > " + cadenaVolteada;
 		}
 		return cadena;		
+	}
+	
+	//Método para voltear la cadena
+	private boolean haEscritoAdios(String cadena) {
+		
+		if(cadena.charAt(1) != '>') {
+			
+			String[] array;
+			array = cadena.split(">");	
+			System.out.println(array[1]);
+			System.out.println(array[1].trim());
+			if (array[1].trim().equals("adios")) return true;
+		}
+		return false;		
 	}
 }// ..HiloServidorChat
