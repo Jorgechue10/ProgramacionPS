@@ -16,7 +16,7 @@ import org.apache.commons.net.ftp.*;
  ftp.freenet.de
  
  */
-public class EJ01_ClienteFTP1 {
+public class EJ_01_ClienteFTP1 {
 	public static void main(String[] args) throws SocketException, IOException {
 
 		FTPClient cliente = new FTPClient();

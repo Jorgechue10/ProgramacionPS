@@ -1,0 +1,1 @@
+"Tests are canary in the coal mine". When the design is bad, testing is hard.

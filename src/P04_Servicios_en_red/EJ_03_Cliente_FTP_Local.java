@@ -4,13 +4,13 @@ import java.io.*;
 import org.apache.commons.net.ftp.*;
 
 
-public class EJ02_ClienteFTP2 {
+public class EJ_03_Cliente_FTP_Local {
   public static void main(String[] args) {
 	FTPClient cliente = new FTPClient();
-	String servFTP = "ftp.rediris.es";
+	String servFTP = "localhost";
 	System.out.println("Nos conectamos a: " + servFTP);
-	String usuario = "anonymous";
-	String clave = "anonymous";
+	String usuario = "jorge";
+	String clave = "1234";
 	try {
 		cliente.connect(servFTP);
         cliente.enterLocalPassiveMode(); //modo pasivo
