@@ -19,7 +19,7 @@ public class EJ_01_Ejemplo_main {
 		//ip=InetAddress.getLocalHost();
 		//System.out.println(ip);
 		
-		System.out.println("Direcció"+ip.getHostAddress());
+		System.out.println("Dirección: "+ip.getHostAddress());
 		System.out.println(""+ip.getHostName());
 		System.out.println(ip.getCanonicalHostName());
 		
