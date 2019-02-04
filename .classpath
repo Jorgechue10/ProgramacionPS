@@ -7,6 +7,6 @@
 	<classpathentry kind="src" path="Unidad_03_Comunicaciones_en_red"/>
 	<classpathentry kind="src" path="Unidad_04_Servicios_en_red"/>
 	<classpathentry kind="src" path="Evaluacion"/>
-	<classpathentry kind="lib" path="src/P04_Servicios_en_red/librerias/commons-net-3.6.jar"/>
+	<classpathentry kind="lib" path="Unidad_04_Servicios_en_red/librerias/commons-net-3.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

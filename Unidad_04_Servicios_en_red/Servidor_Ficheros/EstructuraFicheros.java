@@ -73,6 +73,10 @@ public class EstructuraFicheros implements Serializable {
 	}
 
 	public String getPath() {	return path;	}
+	
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	//public String getParent() {	return parent;	}
 

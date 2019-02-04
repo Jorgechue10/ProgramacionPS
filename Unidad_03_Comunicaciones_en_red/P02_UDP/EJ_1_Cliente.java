@@ -20,9 +20,19 @@ public class EJ_1_Cliente {
 		String saludo = "Hola Servidor, soy Jorge";
 		mensaje = saludo.getBytes(); // Hay que pasar la cadena a bytes para el envío
 
+		//CONSTRUYO EL DATAGRAMA A ENVIAR
 		DatagramPacket paqueteUDP = new DatagramPacket(mensaje, mensaje.length, destino, puerto);
-		
 		DatagramSocket socket = new DatagramSocket();
+		
+		//Información del envío
+		System.out.println("Enviando Datagrama de longitud: "+ 
+                mensaje.length);
+		System.out.println("Host destino : "+  destino.getHostName());
+		System.out.println("IP Destino   : " + destino.getHostAddress());
+		System.out.println("Puerto local del socket: " + 
+		                socket.getLocalPort());
+		System.out.println("Puerto al que envio: " + paqueteUDP.getPort());
+		
 		socket.send(paqueteUDP);
 		socket.close();
 	}

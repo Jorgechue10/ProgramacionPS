@@ -1,6 +1,5 @@
 package P04_Servicios_en_red;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.io.Writer;
 import java.security.InvalidKeyException;
@@ -8,20 +7,15 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Scanner;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
-import javax.swing.JFrame;
-import javax.swing.JPasswordField;
 
 import org.apache.commons.net.smtp.*;
 
 public class EJ_09_ClienteSMTPAutenticado {
 	public static void main(String[] args) throws NoSuchAlgorithmException, UnrecoverableKeyException,
 			KeyStoreException, InvalidKeyException, InvalidKeySpecException {
-
-		Scanner teclado = new Scanner(System.in);
 		
 		// se crea cliente SMTP seguro
 		AuthenticatingSMTPClient client = new AuthenticatingSMTPClient();
@@ -29,22 +23,7 @@ public class EJ_09_ClienteSMTPAutenticado {
 		// datos del usuario y del servidor
 		String server = "smtp.gmail.com";
 		String username = "jorge.chueca.guerra@iestubalcain.net";
-		
-		JFrame ventana = new JFrame();
-		ventana.getContentPane().setBackground(new Color(204, 255, 255));
-		ventana.setTitle("Contraseña");
-		ventana.setBounds(100, 100, 517, 393);
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ventana.getContentPane().setLayout(null);
-		ventana.setVisible(true);
-		
-		JPasswordField passwordField = new JPasswordField("Contraseña", 20);
-		passwordField.setBounds(115, 25, 125, 32);
-		ventana.getContentPane().add(passwordField);
-		
-		//char[] password = passwordField.getPassword();
-		
-		String password = String.valueOf(passwordField.getPassword());
+		String password = "claveusuario";
 		int puerto = 587;
 		String remitente = "jorge.chueca.guerra@iestubalcain.net";
 
@@ -83,7 +62,7 @@ public class EJ_09_ClienteSMTPAutenticado {
 				// se realiza la autenticación con el servidor
 				if (client.auth(AuthenticatingSMTPClient.AUTH_METHOD.LOGIN, username, password)) {
 					System.out.println("4 - " + client.getReplyString());
-					String destino1 = "fulanito@gmail.com";
+					String destino1 = "jorge.chueca.guerra@iestubalcain.net";
 					String asunto = "Prueba de SMTPClient con Gmail";
 					String mensaje = "Esto es una prueba de mensaje con usuario autenticado desde Java.";
 					// se crea la cabecera

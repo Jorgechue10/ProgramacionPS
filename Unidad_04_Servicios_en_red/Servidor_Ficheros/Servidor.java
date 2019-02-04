@@ -14,7 +14,7 @@ public class Servidor {
 		String Directorio = "";
 		JFileChooser f =new JFileChooser();			
 		f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		f.setDialogTitle("SELECCIONA EL DIRECTORIO DONDE EST�N LOS FICHEROS");
+		f.setDialogTitle("SELECCIONA EL DIRECTORIO DONDE ESTÁN LOS FICHEROS");
 		int returnVal = f.showDialog(f, "Seleccionar");
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION) {

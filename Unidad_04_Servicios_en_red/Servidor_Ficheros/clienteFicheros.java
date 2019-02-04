@@ -119,6 +119,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 				    nodo = (EstructuraFicheros) listaDirec.getSelectedValue();					
 					if (nodo.isDir()) {
 						// es un directorio
+						cambiarDirectorio(nodo.getPath());
                        campo.setText("FUNCIÓN NO IMPLEMENTADA..... " );
 					} else {
 						// SE TRATA DE UN FICHERO
@@ -270,6 +271,21 @@ public class clienteFicheros extends JFrame implements Runnable {
 	}// Fin llenarLista
 
 	
+	//Método para interactuar entre directorios
+	private void cambiarDirectorio(String nuevaRuta) {
+		
+        // Cambiar directorio RAIZ
+		Raiz.setPath(nuevaRuta);			
+		EstructuraFicheros[] nodos = Raiz.getLista();//	 		
+		// Directorio seleccionadoara saber directorio y fichero seleccionado
+		direcSelec = Raiz.getPath();  
+		//if(Raiz.getNumeFich()> 0)
+		llenarLista(nodos,  Raiz.getNumeFich());
+		cab3.setText("RAIZ: " + direcSelec);
+		cab.setText("CONECTADO AL SERVIDOR DE FICHEROS");			
+        campo2.setText("Número de ficheros en el directorio: " + Raiz.getNumeFich());
+			
+	}
 
 	// main---------------------------------------------------------------------
 	public static void main(String[] args) throws IOException {
