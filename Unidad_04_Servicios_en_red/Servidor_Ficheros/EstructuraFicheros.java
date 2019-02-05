@@ -57,6 +57,10 @@ public class EstructuraFicheros implements Serializable {
 
 	public boolean isDir() {	return isDir;	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String getName() {
 		String name_dir = name;
 		if (isDir) {

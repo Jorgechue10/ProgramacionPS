@@ -48,6 +48,12 @@ class HiloServidor extends Thread {
 					EstructuraFicheros n = new EstructuraFicheros(fic.getDirectorio());
 					outObjeto.writeObject(n);					
 				}
+				
+				if (peticion instanceof CambioDirectorio) {
+					CambioDirectorio diretorio = (CambioDirectorio) peticion;
+					NF = new EstructuraFicheros(diretorio.getNombreDirectorio());
+					outObjeto.writeObject(NF);
+				}
 			}
 		} catch (IOException e) {
 			// cuando un cliente Cierra la conexion		

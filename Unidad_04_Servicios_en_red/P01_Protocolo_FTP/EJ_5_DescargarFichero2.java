@@ -52,22 +52,22 @@ public class EJ_5_DescargarFichero2 {
 			
 			//RECUPERAR EL FICHERO
 			String nombreFichero = "";
-			BufferedOutputStream out = null;
 			//recorre la lista de archivos
 			for(int i = 0; i < files.length; i++) {
 				//si es un fichero, los descarga con el BufferedOutputStream
 				if(files[i].getType() == 0) {
 					nombreFichero = files[i].getName();
-					out = new BufferedOutputStream(new FileOutputStream(
+					BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(
 							"Unidad_04_Servicios_en_red/P01_Protocolo_FTP/Ficheros/ej_5_2_"+nombreFichero));
 					
 					if(cliente.retrieveFile(nombreFichero, out))
 						System.out.println("El fichero "+nombreFichero+" ha sido descargado");
 					else
-						System.out.println("No se ha podido descargar... ");					
+						System.out.println("No se ha podido descargar... ");
+					
+					out.close();
 				}
-			}
-			out.close();
+			}			
 			
 			cliente.logout();
 			cliente.disconnect();

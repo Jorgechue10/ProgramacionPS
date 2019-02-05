@@ -5,6 +5,8 @@ import javax.swing.event.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,7 +18,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 	EstructuraFicheros nodo = null;
 	ObjectInputStream inObjeto;
 	ObjectOutputStream outObjeto;
-    EstructuraFicheros Raiz;
+    static EstructuraFicheros Raiz;
 
 	// campos de cabecera parte superior
 	static JTextField cab = new JTextField();
@@ -43,10 +45,12 @@ public class clienteFicheros extends JFrame implements Runnable {
 	static String direcSelec = "";
 	static String ficheroSelec = "";
 	static String ficherocompleto = "";
+	
+	static List<String> listaDirectorios = new ArrayList<String>();
 
 	// constructor
 	public clienteFicheros(Socket s) throws IOException {
-		super("SERVIDOR DE FICHEROS B�SICO");
+		super("SERVIDOR DE FICHEROS BÁSICO");
 		socket = s;
 		try {
 			// flujo de salida -envio objeto
@@ -116,11 +120,31 @@ public class clienteFicheros extends JFrame implements Runnable {
 				if (lse.getValueIsAdjusting()) {
 					ficheroSelec = "";
 					ficherocompleto = "";
-				    nodo = (EstructuraFicheros) listaDirec.getSelectedValue();					
+					direcSelec = "";
+				    nodo = (EstructuraFicheros) listaDirec.getSelectedValue();	
+					
 					if (nodo.isDir()) {
+						CambioDirectorio camDirect;
+						int posUltimoDirec = listaDirectorios.size()-1;						
+						
+						if(nodo.getPath() == listaDirectorios.get(posUltimoDirec)) {
+							listaDirectorios.remove(posUltimoDirec);
+							posUltimoDirec--;
+							camDirect = new CambioDirectorio(listaDirectorios.get(posUltimoDirec));			
+							listaDirectorios.remove(posUltimoDirec);
+							posUltimoDirec--;											
+						}else 
+							camDirect = new CambioDirectorio(nodo.getPath());
 						// es un directorio
-						cambiarDirectorio(nodo.getPath());
-                       campo.setText("FUNCIÓN NO IMPLEMENTADA..... " );
+						direcSelec = nodo.getName();
+						
+						try {
+							outObjeto.writeObject(camDirect);
+							campo.setText("Directorio seleccionado: " + direcSelec);
+							run();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}	
 					} else {
 						// SE TRATA DE UN FICHERO
 						ficheroSelec = nodo.getName();
@@ -132,7 +156,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 			}
 		});// fin lista
 
-		// --al hacer clic en el bot�n Salir
+		// --al hacer clic en el botón Salir
 		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -144,10 +168,10 @@ public class clienteFicheros extends JFrame implements Runnable {
 			}
 		});
 
-		// --al hacer clic en el bot�n Actualizar
+		// --al hacer clic en el botón Actualizar
 		
 		
-		// --al hacer clic en el bot�n Descargar
+		// --al hacer clic en el botón Descargar
 		botonDescargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				if (ficherocompleto.equals(""))
@@ -177,7 +201,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 			}
 		});// Fin boton descargar
 
-		// --al hacer clic en el bot�n cargar
+		// --al hacer clic en el botón cargar
 		botonCargar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser f = new JFileChooser();
@@ -212,7 +236,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 						EstructuraFicheros[] lista = nodo.getLista();
 						direcSelec = nodo.getPath();
 						llenarLista(lista, nodo.getNumeFich());
-						campo2.setText("N�mero de ficheros en el directorio: " + lista.length);
+						campo2.setText("Número de ficheros en el directorio: " + lista.length);
 
 					} catch (FileNotFoundException e1) {e1.printStackTrace();} 
 					  catch (IOException ee) {ee.printStackTrace();	}					
@@ -232,12 +256,14 @@ public class clienteFicheros extends JFrame implements Runnable {
 			cab.setText("Conectando con el servidor ........");
              // OBTENER DIRECTORIO RAIZ
 			Raiz = (EstructuraFicheros) inObjeto.readObject();			
-			EstructuraFicheros[] nodos = Raiz.getLista();//	 		
-			// Directorio seleccionadoara saber directorio y fichero seleccionado
-			direcSelec = Raiz.getPath();  
+			EstructuraFicheros[] nodos = Raiz.getLista();//	 	
+			//Guardamos las rutas que vayamos seleccionando porsi queremos volver atrás
+			listaDirectorios.add(Raiz.getPath());
+			// Directorio seleccionado para saber directorio y fichero seleccionado
+			direcSelec = Raiz.getPath();
 			//if(Raiz.getNumeFich()> 0)
 			llenarLista(nodos,  Raiz.getNumeFich());
-			cab3.setText("RAIZ: " + direcSelec);
+			cab3.setText("RAIZ: " + Raiz.getPath());
 			cab.setText("CONECTADO AL SERVIDOR DE FICHEROS");			
             campo2.setText("Número de ficheros en el directorio: " + Raiz.getNumeFich());
 			
@@ -253,13 +279,19 @@ public class clienteFicheros extends JFrame implements Runnable {
 		// -----------------------------------------------------------------
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void llenarLista(EstructuraFicheros[] files, int numero) {
+	private static void llenarLista(EstructuraFicheros[] files, int numero) throws IOException {
 		if (numero==0) return;
 		DefaultListModel modeloLista = new DefaultListModel();
 		listaDirec.setForeground(Color.blue);
 		Font fuente = new Font("Courier", Font.PLAIN, 12);
 		listaDirec.setFont(fuente);
 		listaDirec.removeAll();		
+		
+		if (listaDirectorios.size() != 1) {
+			EstructuraFicheros carpetaAnterior = new EstructuraFicheros(listaDirectorios.get(listaDirectorios.size()-1));
+			carpetaAnterior.setName("...");
+			modeloLista.addElement(carpetaAnterior);			
+		}
 		
 		for (int i = 0; i < files.length; i++)
 			modeloLista.addElement(files[i]);
@@ -269,26 +301,10 @@ public class clienteFicheros extends JFrame implements Runnable {
 		} catch (NullPointerException n) {	}
 
 	}// Fin llenarLista
-
 	
-	//Método para interactuar entre directorios
-	private void cambiarDirectorio(String nuevaRuta) {
-		
-        // Cambiar directorio RAIZ
-		Raiz.setPath(nuevaRuta);			
-		EstructuraFicheros[] nodos = Raiz.getLista();//	 		
-		// Directorio seleccionadoara saber directorio y fichero seleccionado
-		direcSelec = Raiz.getPath();  
-		//if(Raiz.getNumeFich()> 0)
-		llenarLista(nodos,  Raiz.getNumeFich());
-		cab3.setText("RAIZ: " + direcSelec);
-		cab.setText("CONECTADO AL SERVIDOR DE FICHEROS");			
-        campo2.setText("Número de ficheros en el directorio: " + Raiz.getNumeFich());
-			
-	}
 
 	// main---------------------------------------------------------------------
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {		
 		int puerto = 44441;
 		Socket s = new Socket("localhost", puerto);	
 		//Socket s = new Socket("192.168.5.80", puerto); #Si te conectaras con 
