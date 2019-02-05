@@ -120,9 +120,10 @@ public class clienteFicheros extends JFrame implements Runnable {
 				if (lse.getValueIsAdjusting()) {
 					ficheroSelec = "";
 					ficherocompleto = "";
-					direcSelec = "";
-				    nodo = (EstructuraFicheros) listaDirec.getSelectedValue();	
 					
+				    nodo = (EstructuraFicheros) listaDirec.getSelectedValue();	
+				    
+					// es un directorio
 					if (nodo.isDir()) {
 						CambioDirectorio camDirect;
 						int posUltimoDirec = listaDirectorios.size()-1;						
@@ -134,13 +135,11 @@ public class clienteFicheros extends JFrame implements Runnable {
 							listaDirectorios.remove(posUltimoDirec);
 							posUltimoDirec--;											
 						}else 
-							camDirect = new CambioDirectorio(nodo.getPath());
-						// es un directorio
-						direcSelec = nodo.getName();
+							camDirect = new CambioDirectorio(nodo.getPath());						
 						
 						try {
 							outObjeto.writeObject(camDirect);
-							campo.setText("Directorio seleccionado: " + direcSelec);
+							campo.setText("Directorio seleccionado: " + nodo.getName());
 							run();
 						} catch (IOException e) {
 							e.printStackTrace();
@@ -218,7 +217,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 						in = new BufferedInputStream(new FileInputStream(
 								archivo));
 						long bytes = file.length();// fichero.length();		
-						System.out.println("tama�o:"+file.length());
+						System.out.println("tamaño:"+file.length());
 						byte[] buff = new byte[(int) bytes];
 						int i, j = 0;
 
@@ -229,7 +228,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 						in.close(); // cerrar stream de entrada
 						Object ff = new EnviaFichero(buff, nombreArchivo,direcSelec);
 						outObjeto.writeObject(ff);
-                                                JOptionPane.showMessageDialog(null,"FICHERO CARGADO");
+                        JOptionPane.showMessageDialog(null,"FICHERO CARGADO");
 						
 						//obtengo de nuevo la lista de ficheros
 						nodo = (EstructuraFicheros) inObjeto.readObject();
@@ -241,7 +240,6 @@ public class clienteFicheros extends JFrame implements Runnable {
 					} catch (FileNotFoundException e1) {e1.printStackTrace();} 
 					  catch (IOException ee) {ee.printStackTrace();	}					
 					  catch (ClassNotFoundException e2) {e2.printStackTrace();}
-
 				}
 
 			}
@@ -314,5 +312,5 @@ public class clienteFicheros extends JFrame implements Runnable {
 		hiloC.setVisible(true);
 		new Thread(hiloC).start();
 	}// ..FIN main
-
+	
 }// .fin clase
