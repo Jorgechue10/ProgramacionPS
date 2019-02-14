@@ -1,0 +1,3 @@
+grant {
+      permission java.io.FilePermission "C:\\Users\\ifc\\git\\ProgramacionPS\\Unidad_05_Seguridad\\P01_Seguridad_en_Java\\Ficheros\\*", "read, write";
+};
