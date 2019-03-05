@@ -1,4 +1,4 @@
-package P02_Protocolo_SMTP;
+package P03_Protocolo_SMTP;
 
 import java.io.IOException;
 import java.io.Writer;

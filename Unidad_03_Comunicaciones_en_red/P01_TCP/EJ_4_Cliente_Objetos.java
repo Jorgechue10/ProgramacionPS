@@ -25,7 +25,7 @@ public class EJ_4_Cliente_Objetos {
 	    
 	    //Se recibe un objeto
 	    EJ_4_0_Persona personaRec = (EJ_4_0_Persona) objEntrada.readObject();//recibo objeto
-	    System.out.println("Recibo: " +personaRec.getNombre()+"*" +personaRec.getEdad());
+	    System.out.println("Recibo: " +personaRec.getNombre()+", " +personaRec.getEdad());
 		
 	    //Modifico el objeto
 	    personaRec.setNombre("Jorge Chueca");

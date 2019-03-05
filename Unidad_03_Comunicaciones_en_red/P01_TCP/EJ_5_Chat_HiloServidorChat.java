@@ -33,9 +33,11 @@ public class EJ_5_Chat_HiloServidorChat implements Runnable {
 				cadena = fentrada.readUTF();
 				
 				if (haEscritoAdios(cadena)) {// EL CLIENTE SE DESCONECTA
-					cadena = " > Abandona el Chat ... " + nombreAbandona(cadena);
 					comun.setACTUALES(comun.getACTUALES() - 1);
 					System.out.println("NUMERO DE CONEXIONES ACTUALES: " + comun.getACTUALES());
+					cadena = " > Abandona el Chat ... " + nombreUsuario(cadena);
+					comun.setMensajes(comun.getMensajes() + cadena + "\n");
+					EnviarMensajesaTodos(comun.getMensajes());
 					break;
 				}				
 				
@@ -74,7 +76,7 @@ public class EJ_5_Chat_HiloServidorChat implements Runnable {
 		
 	}// EnviarMensajesaTodos
 	
-	//Método para voltear la cadena
+	//Método para comprobar si se ha escrito "adios"
 	private boolean haEscritoAdios(String cadena) {
 		
 		if(cadena.charAt(1) != '>') {
@@ -86,12 +88,10 @@ public class EJ_5_Chat_HiloServidorChat implements Runnable {
 		return false;		
 	}
 	
-	//Método para voltear la cadena
-	private String nombreAbandona(String cadena) {
-		
-		String[] array;
-		array = cadena.split(">");	
-		return array[0].trim();		
+	//Método que devuelve el nombre del usuario desconectado tras escribir "adios"
+	private String nombreUsuario(String cadena) {		
 			
+		String[] array = cadena.split(">");	
+		return array[0].trim();	
 	}
 }// ..HiloServidorChat

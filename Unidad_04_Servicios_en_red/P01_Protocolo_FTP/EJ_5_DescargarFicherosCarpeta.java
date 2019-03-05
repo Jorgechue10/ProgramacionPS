@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
-public class EJ_5_DescargarFichero2 {
+public class EJ_5_DescargarFicherosCarpeta {
 
 	public static void main(String[] args) {
 		

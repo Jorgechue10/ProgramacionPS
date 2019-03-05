@@ -73,10 +73,9 @@ public class EJ_5_Chat_ClienteChat extends JFrame implements ActionListener, Run
 			}
 		}
 		if (e.getSource() == botonSalir) { // SE PULSA BOTON SALIR
-			String texto = " > Abandona el Chat ... " + nombre;
+			
 			try {
-				fsalida.writeUTF(texto);
-				fsalida.writeUTF(">adios");
+				fsalida.writeUTF(nombre + "> adios");
 				repetir = false;
 			} catch (IOException e1) {
 				e1.printStackTrace();

@@ -1,4 +1,4 @@
-package Servidor_Ficheros;
+package P02_Servidor_Ficheros_FTP;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -183,7 +183,7 @@ public class clienteFicheros extends JFrame implements Runnable {
 					// pido el fichero
 					// Se abre un fichero para empezar a copiar lo que se
 					// reciba. 
-					FileOutputStream fos = new FileOutputStream("Unidad_04_Servicios_en_red\\Servidor_Ficheros\\Descargas\\"+ficheroSelec);
+					FileOutputStream fos = new FileOutputStream("Unidad_04_Servicios_en_red\\P02_Servidor_Ficheros_FTP\\Descargas\\"+ficheroSelec);
 					// Se crea un ObjectInputStream del socket para leer los
 					// bytes del fichero
 					// obtengo los bytes

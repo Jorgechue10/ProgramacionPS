@@ -1,4 +1,4 @@
-package Servidor_Ficheros;
+package P02_Servidor_Ficheros_FTP;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;

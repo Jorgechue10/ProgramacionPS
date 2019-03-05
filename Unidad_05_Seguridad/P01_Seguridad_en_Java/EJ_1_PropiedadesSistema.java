@@ -1,8 +1,12 @@
-//-Djava.security.manager
+//Pasar por argumentos de maquina virtual "-Djava.security.manager" para
+//que se pueda acceder a algunas propiedades
+
 package P01_Seguridad_en_Java;
 
 public class EJ_1_PropiedadesSistema {
+	
 	public static void main(String[] args) {	
+		
 		String t[] = { "os.name", "os.version", 
 					"user.dir", "user.home", "user.name",
 					"java.class.path", "java.home", 

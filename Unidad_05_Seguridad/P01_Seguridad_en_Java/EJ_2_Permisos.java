@@ -11,6 +11,7 @@ public class EJ_2_Permisos {
      
       public static void main(String[] args) {
            
+    	  	//USAR RUTAS ABSOLUTAS PARA MAYOR SEGURIDAD
             //El directorio C:/Ficheros debe estar creado previamente.
             System.setProperty ("java.security.policy", "C:\\Users\\ifc\\git\\ProgramacionPS\\Unidad_05_Seguridad\\P01_Seguridad_en_Java\\Ficheros\\Politica2.policy");
             System.setSecurityManager(new SecurityManager());
