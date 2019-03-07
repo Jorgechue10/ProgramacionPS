@@ -1,0 +1,3 @@
+java -classpath "C:\Users\ifc\git\ProgramacionPS\bin;C:\Users\ifc\git\ProgramacionPS\Unidad_04_Servicios_en_red\librerias\commons-net-3.6.jar" Ejercicio2.SystemProperties 
+-Djava.security.manager -Djava.security.policy=C:/Users/ifc/git/ProgramacionPS/bin/Ejercicio2/politica.policy Ejercicio2.SystemProperties -Dfile.encoding=UTF-8 
+-classpath "C:/Users/ifc/git/ProgramacionPS/bin/Ejercicio2/ SystemProperties*"
