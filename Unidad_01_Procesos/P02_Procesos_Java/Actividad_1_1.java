@@ -5,7 +5,7 @@ public class Actividad_1_1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//S� el n�mero de argumentos es menor que 1  
+		//Si el número de argumentos es menor que 1  
 		if(args.length<1) {
 			System.out.println("primer if");
 			System.exit(1);//Devuelve 1
@@ -17,7 +17,7 @@ public class Actividad_1_1 {
 			System.exit(2);//Devuelve 2
 		}
 		
-		//S� el argumento es un n�mero entero menor que 0 debe devolver 3.
+		//Si el argumento es un número entero menor que 0 debe devolver 3.
 		if((args.length==1)&&(args[0].charAt(0)=='-')&&(esNumero(args[0].charAt(1)))) {
 			System.out.println("tercer if");
 			System.exit(3);//Devuelve 3

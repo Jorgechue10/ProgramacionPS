@@ -5,15 +5,10 @@ import java.io.InputStream;
 public class EJ_3_3_LanzadorStreamSalida {
 
 	public void lanzarSumador(Integer n1, Integer n2){
-	    String clase="com.P01_Pocesos_Java.Sumador";
+		String clase = "P02_Procesos_Java.EJ_3_1_Sumador";
 	    Process p;
 	    try {
-	        p = new ProcessBuilder(
-                    "java",
-                    clase,
-                    n1.toString(),
-                    n2.toString()
-            ).start();
+	    	p = new ProcessBuilder("java", clase, n1.toString(), n2.toString()).start();
 	        //pb.start();
 	        
 	        try {
@@ -47,10 +42,10 @@ public class EJ_3_3_LanzadorStreamSalida {
 	}
 	
 	public static void main(String[] args){
-		EJ_3_3_LanzadorStreamSalida l=new EJ_3_3_LanzadorStreamSalida();
+		EJ_3_3_LanzadorStreamSalida l = new EJ_3_3_LanzadorStreamSalida();
 	    l.lanzarSumador(1, 51);
 	    l.lanzarSumador(51, 100);
-	    System.out.println("Sumas realizadas con �xito");
+	    System.out.println("Sumas realizadas con éxito");
 	}
 
 }
