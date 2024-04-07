@@ -9,7 +9,7 @@ public class EJ_2_ListaDirectrios_Cliente_Local {
 	FTPClient cliente = new FTPClient();
 	String servFTP = "localhost";
 	System.out.println("Nos conectamos a: " + servFTP);
-	String usuario = "usuario1";
+	String usuario = "usuario";
 	String clave = "1234";
 	try {
 		cliente.connect(servFTP);

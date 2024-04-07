@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selva>
+    <animal>
+        <nombre>Werthers</nombre>
+        <tipo>Pantera</tipo>
+        <color>Negro</color>
+        <edad>12</edad>
+        </animal>
+    <animal>
+        <nombre>Bun</nombre>
+        <tipo>León</tipo>
+        <color>Marrón</color>
+        <edad>15</edad>
+    </animal>
+</selva>
